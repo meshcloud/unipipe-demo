@@ -53,6 +53,7 @@ jobs:
       - name: create-vnets
         run: |
           git checkout master
+          chmod +x network/create-vnets.sh
           network/create-vnets.sh
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating VNets"
