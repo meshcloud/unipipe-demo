@@ -40,8 +40,6 @@ class VnetHandler {
 
 function tf (azure_subscription_id, vNetRegion, count_of_leading_1_bits_in_the_routing_mask) {
   return `provider "azurerm" {
-  features {}
-  tenant = "5f0e994b-6436-4f58-be96-4dc7bebff827" // Meshcloud GmbH AAD tenant
   subscription = "${azure_subscription_id}"
 }
 resource "azurerm_resource_group" "infrastructure_rg" {

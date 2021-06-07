@@ -16,6 +16,6 @@ for filepath in **/*.main.tf; do
 
     unipipe update --instance-id "$instance_id" --status "succeeded" --description "VNet Service Ready. To order a VNet, please add a binding." ./
 
-     # terraform -chdir="$(dirname "$filepath")" init
-     # terraform -chdir="$(dirname "$filepath")" plan
+     terraform -chdir="$(dirname "$filepath")" init
+     terraform -chdir="$(dirname "$filepath")" plan
 done
