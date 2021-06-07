@@ -7,10 +7,6 @@ class VnetHandler {
     const context = service.instance.context;
     const bindings = service.bindings;
 
-    // We read the gcp project id out of the first tenant binding we find.
-    // TODO Error handling for no or multiple bindings
-    const azure_subscription_id = bindings?.[0]?.binding?.bindResource?.tenant_id
-
     return {
       // Hierarchy level 1
       name: "network",
@@ -27,7 +23,7 @@ class VnetHandler {
                 // this prevents collisions for multiple instances under the same meshProject
                 name: service.instance.serviceInstanceId,
                 entries: [
-                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: tf(azure_subscription_id, params.vNetRegion, params.count_of_leading_1_bits_in_the_routing_mask) },
+                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: tf(params.vNetRegion, params.count_of_leading_1_bits_in_the_routing_mask) },
                 ],
               }
             ],
@@ -38,9 +34,9 @@ class VnetHandler {
   }
 }
 
-function tf (azure_subscription_id, vNetRegion, count_of_leading_1_bits_in_the_routing_mask) {
+function tf (vNetRegion, count_of_leading_1_bits_in_the_routing_mask) {
   return `provider "azurerm" {
-  subscription = "${azure_subscription_id}"
+  features {}
 }
 resource "azurerm_resource_group" "infrastructure_rg" {
   name     = "infrastructure_rg"
