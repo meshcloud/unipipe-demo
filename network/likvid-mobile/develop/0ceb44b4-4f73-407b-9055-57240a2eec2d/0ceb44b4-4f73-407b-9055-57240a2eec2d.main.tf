@@ -1,7 +1,5 @@
 provider "azurerm" {
   features {}
-  tenant = "5f0e994b-6436-4f58-be96-4dc7bebff827" // Meshcloud GmbH AAD tenant
-  subscription = "undefined"
 }
 resource "azurerm_resource_group" "infrastructure_rg" {
   name     = "infrastructure_rg"
