@@ -14,8 +14,8 @@ for filepath in **/*.main.tf; do
     filename=$(basename "$filepath")
     instance_id="${filename%.main.tf}"
 
-    unipipe update --instance-id "$instance_id" --status "succeeded" --description "VNet Service Ready. To order a VNet, please add a binding." ./
+    terraform -chdir="$(dirname "$filepath")" init
+    terraform -chdir="$(dirname "$filepath")" apply -auto-approve
 
-     terraform -chdir="$(dirname "$filepath")" init
-     terraform -chdir="$(dirname "$filepath")" plan
+    unipipe update --instance-id "$instance_id" --status "succeeded" --description "VNet Service Ready. To order a VNet, please add a binding." ./
 done
