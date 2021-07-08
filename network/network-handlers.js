@@ -24,7 +24,7 @@ class VnetHandler {
                 // this prevents collisions for multiple instances under the same meshProject
                 name: service.instance.serviceInstanceId,
                 entries: [
-                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: deleted?`#DESTROYED`:tf(params.vNetRegion, params.count_of_leading_1_bits_in_the_routing_mask,service.instance.serviceInstanceId) },
+                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: deleted?`#DESTROYED`:tf(params.VNetRegion, params.count_of_leading_1_bits_in_the_routing_mask,service.instance.serviceInstanceId) },
                 ],
               }
             ],
@@ -35,13 +35,18 @@ class VnetHandler {
   }
 }
 
-function tf (vNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId) {
-  return `provider "azurerm" {
+function tf (VNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId) {
+  return `
+terraform {
+  backend "local" {
+  }
+}
+provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "infrastructure_rg" {
   name     = "${serviceInstanceId}"
-  location = "${vNetRegion}"
+  location = "${VNetRegion}"
 }
 // module "vnet" {
 //   source              = "Azure/vnet/azurerm"
@@ -49,7 +54,8 @@ resource "azurerm_resource_group" "infrastructure_rg" {
 //   address_space       = ["10.0.0.0/${count_of_leading_1_bits_in_the_routing_mask}"]
 //
 //   depends_on = [azurerm_resource_group.infrastructure_rg]
-// }`
+// }
+`
 }
 
 const handlers = {
