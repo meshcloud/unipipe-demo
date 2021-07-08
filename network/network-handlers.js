@@ -24,7 +24,7 @@ class VnetHandler {
                 // this prevents collisions for multiple instances under the same meshProject
                 name: service.instance.serviceInstanceId,
                 entries: [
-                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: deleted?`#DESTROYED`:tf(params.vNetRegion, params.count_of_leading_1_bits_in_the_routing_mask) },
+                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: deleted?`#DESTROYED`:tf(params.VNetRegion, params.count_of_leading_1_bits_in_the_routing_mask,service.instance.serviceInstanceId) },
                 ],
               }
             ],
@@ -35,13 +35,13 @@ class VnetHandler {
   }
 }
 
-function tf (vNetRegion, count_of_leading_1_bits_in_the_routing_mask) {
+function tf (VNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId) {
   return `provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "infrastructure_rg" {
-  name     = "infrastructure_rg"
-  location = "West Europe"
+  name     = "${serviceInstanceId}"
+  location = "${VNetRegion}"
 }
 // module "vnet" {
 //   source              = "Azure/vnet/azurerm"
