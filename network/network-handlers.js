@@ -36,7 +36,12 @@ class VnetHandler {
 }
 
 function tf (VNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId) {
-  return `provider "azurerm" {
+  return `
+terraform {
+  backend "local" {
+  }
+}
+provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "infrastructure_rg" {
@@ -49,7 +54,8 @@ resource "azurerm_resource_group" "infrastructure_rg" {
 //   address_space       = ["10.0.0.0/${count_of_leading_1_bits_in_the_routing_mask}"]
 //
 //   depends_on = [azurerm_resource_group.infrastructure_rg]
-// }`
+// }
+`
 }
 
 const handlers = {
