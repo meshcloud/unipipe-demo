@@ -2,7 +2,7 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "infrastructure_rg" {
-  name     = "6e60374c-eaf8-43f4-a64b-f96550b552aa"
+  name     = "0df39fe4-6d14-4eae-8d8e-237b476d3a3b"
   location = "GermanyWestCentral"
 }
 // module "vnet" {
