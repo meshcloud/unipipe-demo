@@ -24,7 +24,7 @@ class VnetHandler {
                 // this prevents collisions for multiple instances under the same meshProject
                 name: service.instance.serviceInstanceId,
                 entries: [
-                  { name: `${service.instance.serviceInstanceId}.main.tf`, content: deleted?`#DESTROYED`:tf(params.VNetRegion, params.count_of_leading_1_bits_in_the_routing_mask,service.instance.serviceInstanceId) },
+                  { name: `${service.instance.serviceInstanceId}.main.tf`, content:tf(params.VNetRegion, params.count_of_leading_1_bits_in_the_routing_mask,service.instance.serviceInstanceId, deleted) },
                 ],
               }
             ],
@@ -35,8 +35,8 @@ class VnetHandler {
   }
 }
 
-function tf (VNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId) {
-  return `
+function tf (VNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId, deleted) {
+  return `${deleted?"#DELETED":""}
 terraform {
   backend "local" {
   }
