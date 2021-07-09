@@ -21,28 +21,34 @@ services:
               parameters:
                 "$schema": http://json-schema.org/draft-04/schema#
                 properties:
-                  count_of_leading_1_bits_in_the_routing_mask:
-                    title: size of vNet
+                  VNetIP:
+                    title: vNet IP
+                    type: string
+                    widget:
+                      id: string
+                    default: "10.X.X.X"
+                  CidrBlock:
+                    title: CIDR Block
                     type: string
                     widget:
                       id: select
                     default: "28"
                     oneOf:
-                      - description: /27 vNet with 11 addresses (+5 addresses reserved by Azure)
+                      - description: /28 vNet with 11 addresses (+5 addresses reserved by Azure)
+                        enum:
+                          - "28"
+                      - description: /27 vNet with 27 addresses (+5 addresses reserved by Azure)
                         enum:
                           - "27"
-                      - description: /26 vNet with 27 addresses (+5 addresses reserved by Azure)
+                      - description: /26 vNet with 61 addresses (+5 addresses reserved by Azure)
                         enum:
                           - "26"
-                      - description: /25 vNet with 61 addresses (+5 addresses reserved by Azure)
+                      - description: /25 vNet with 123 addresses (+5 addresses reserved by Azure)
                         enum:
                           - "25"
-                      - description: /24 vNet with 123 addresses (+5 addresses reserved by Azure)
+                      - description: /24 vNet with 251 addresses (+5 addresses reserved by Azure)
                         enum:
                           - "24"
-                      - description: /23 vNet with 251 addresses (+5 addresses reserved by Azure)
-                        enum:
-                          - "23"
                   VNetRegion:
                     title: vNet Region
                     type: string

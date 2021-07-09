@@ -24,7 +24,7 @@ class VnetHandler {
                 // this prevents collisions for multiple instances under the same meshProject
                 name: service.instance.serviceInstanceId,
                 entries: [
-                  { name: `${service.instance.serviceInstanceId}.main.tf`, content:tf(params.VNetRegion, params.count_of_leading_1_bits_in_the_routing_mask,service.instance.serviceInstanceId, deleted) },
+                  { name: `${service.instance.serviceInstanceId}.main.tf`, content:tf(params.VNetRegion, params.VNetIP, params.CidrBlock, service.instance.serviceInstanceId, deleted) },
                 ],
               }
             ],
@@ -35,7 +35,7 @@ class VnetHandler {
   }
 }
 
-function tf (VNetRegion, count_of_leading_1_bits_in_the_routing_mask, serviceInstanceId, deleted) {
+function tf (VNetRegion, VNetIP, CidrBlock, serviceInstanceId, deleted) {
   return `${deleted?"#DELETED":""}
 terraform {
   backend "local" {
@@ -44,17 +44,40 @@ terraform {
 provider "azurerm" {
   features {}
 }
-resource "azurerm_resource_group" "infrastructure_rg" {
+
+locals {
+  address_space = "${VNetIP}/${CidrBlock}"
+}
+
+resource "azurerm_resource_group" "main" {
   name     = "${serviceInstanceId}"
   location = "${VNetRegion}"
 }
-// module "vnet" {
-//   source              = "Azure/vnet/azurerm"
-//   resource_group_name = azurerm_resource_group.infrastructure_rg.name
-//   address_space       = ["10.0.0.0/${count_of_leading_1_bits_in_the_routing_mask}"]
-//
-//   depends_on = [azurerm_resource_group.infrastructure_rg]
-// }
+
+resource "azurerm_virtual_network" "main" {
+  name                = "UP-${serviceInstanceId}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  address_space       = [ local.address_space ]
+
+  subnet {
+    name                = "public"
+    address_prefixes = [cidrsubnet(local.address_space, 1, 0)]
+    network_security_group_id = azurerm_network_security_group.main.id
+  }
+
+  subnet {
+    name                = "private"
+    address_prefixes = [cidrsubnet(local.address_space, 1, 1)]
+    network_security_group_id = azurerm_network_security_group.main.id
+  }
+}
+
+resource "azurerm_network_security_group" "main" {
+  name                = "SG-${serviceInstanceId}"
+  location            = "${VNetRegion}"
+  resource_group_name = azurerm_resource_group.main.name
+}
 `
 }
 
