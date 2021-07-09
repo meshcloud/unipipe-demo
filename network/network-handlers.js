@@ -52,6 +52,10 @@ locals {
 resource "azurerm_resource_group" "main" {
   name     = "${serviceInstanceId}"
   location = "${VNetRegion}"
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -71,12 +75,20 @@ resource "azurerm_virtual_network" "main" {
     address_prefix = cidrsubnet(local.address_space, 1, 1)
     security_group = azurerm_network_security_group.main.id
   }
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "azurerm_network_security_group" "main" {
   name                = "SG-${serviceInstanceId}"
   location            = "${VNetRegion}"
   resource_group_name = azurerm_resource_group.main.name
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 `
 }
