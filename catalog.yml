@@ -13,7 +13,7 @@ services:
     plans:
       - id: f58f1e3b-902f-48c5-af57-63d5c4f88a28 # this uuid was randomly generated using "unipipe generate uuid"
         name: default
-        description: Standard vNet
+        description: Standard vNet generates 1 Private and 1 Public Subnet
         free: true
         schemas:
           service_instance:
@@ -34,19 +34,19 @@ services:
                       id: select
                     default: "28"
                     oneOf:
-                      - description: /28 vNet with 11 addresses (+5 addresses reserved by Azure)
+                      - description: /28 vNet with 6 addresses (+5 addresses reserved by Azure per each subnet)
                         enum:
                           - "28"
-                      - description: /27 vNet with 27 addresses (+5 addresses reserved by Azure)
+                      - description: /27 vNet with 22 addresses (+5 addresses reserved by Azure per each subnet)
                         enum:
                           - "27"
-                      - description: /26 vNet with 61 addresses (+5 addresses reserved by Azure)
+                      - description: /26 vNet with 56 addresses (+5 addresses reserved by Azure per each subnet)
                         enum:
                           - "26"
-                      - description: /25 vNet with 123 addresses (+5 addresses reserved by Azure)
+                      - description: /25 vNet with 118 addresses (+5 addresses reserved by Azure per each subnet)
                         enum:
                           - "25"
-                      - description: /24 vNet with 251 addresses (+5 addresses reserved by Azure)
+                      - description: /24 vNet with 246 addresses (+5 addresses reserved by Azure per each subnet)
                         enum:
                           - "24"
                   VNetRegion:
