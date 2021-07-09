@@ -14,6 +14,10 @@ locals {
 resource "azurerm_resource_group" "main" {
   name     = "e80e9c69-0112-4fe6-a996-3ec2c33473c7"
   location = "GermanyWestCentral"
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -33,10 +37,18 @@ resource "azurerm_virtual_network" "main" {
     address_prefix = cidrsubnet(local.address_space, 1, 1)
     security_group = azurerm_network_security_group.main.id
   }
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "azurerm_network_security_group" "main" {
   name                = "SG-e80e9c69-0112-4fe6-a996-3ec2c33473c7"
   location            = "GermanyWestCentral"
   resource_group_name = azurerm_resource_group.main.name
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
