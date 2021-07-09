@@ -62,14 +62,14 @@ resource "azurerm_virtual_network" "main" {
 
   subnet {
     name                = "public"
-    address_prefixes = [cidrsubnet(local.address_space, 1, 0)]
-    network_security_group_id = azurerm_network_security_group.main.id
+    address_prefix = [cidrsubnet(local.address_space, 1, 0)]
+    security_group = azurerm_network_security_group.main.id
   }
 
   subnet {
     name                = "private"
-    address_prefixes = [cidrsubnet(local.address_space, 1, 1)]
-    network_security_group_id = azurerm_network_security_group.main.id
+    address_prefix = [cidrsubnet(local.address_space, 1, 1)]
+    security_group = azurerm_network_security_group.main.id
   }
 }
 
