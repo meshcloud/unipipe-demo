@@ -12,7 +12,7 @@ services:
       imageUrl: "https://symbols.getvecta.com/stencil_28/71_virtual-network.4fe1e0cdfa.svg"
     plans:
       - id: f58f1e3b-902f-48c5-af57-63d5c4f88a28 # this uuid was randomly generated using "unipipe generate uuid"
-        name: default
+        name: Standard
         description: Standard vNet generates 1 Private and 1 Public Subnet
         free: true
         schemas:
