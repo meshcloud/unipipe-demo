@@ -15,6 +15,7 @@ services:
         name: Standard
         description: Standard vNet generates 1 Private and 1 Public Subnet
         free: true
+        plan_updateable: false
         schemas:
           service_instance:
             create:
