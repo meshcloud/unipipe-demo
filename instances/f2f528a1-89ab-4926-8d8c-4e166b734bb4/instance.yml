@@ -78,7 +78,7 @@ originatingIdentity: !<PlatformContext>
   user_euid: "likvid-anna@meshcloud.io"
 asyncAccepted: true
 parameters:
-  VNetIP: "10.0.0.10"
+  VNetIP: "10.0.0.0"
   CidrBlock: "27"
   VNetRegion: "WestEurope"
 context: !<PlatformContext>
