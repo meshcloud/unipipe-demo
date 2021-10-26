@@ -63,19 +63,3 @@ services:
                       - description: WestEurope
                         enum:
                           - "WestEurope"
-
-  - id: eeeca568-b736-463c-8648-2013f7ee945a
-    name: Azure VNet
-    description: Provides a configurable default VNET in your Azure subscription.
-    bindable: false
-    plan_updateable: false
-    instances_retrievable: true
-    bindings_retrievable: false
-    metadata:
-      displayName: "Felix VNet Service"
-    plans:
-      - id: 504af1b6-1afc-4993-b649-4b59472f6bdc
-        name: Standard
-        description: Standard vNet generates 1 Private and 1 Public Subnet
-        free: true
-        plan_updateable: false
