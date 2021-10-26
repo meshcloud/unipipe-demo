@@ -1,2 +1,3 @@
-status: succeeded
-description: VNet Service is Ready.
+---
+status: "in progress"
+description: "preparing service deletion"
