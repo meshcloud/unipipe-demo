@@ -57,4 +57,4 @@ context: !<PlatformContext>
   auth_url: null
   customer_id: "likvid-operations"
   token_url: null
-deleted: false
+deleted: true
