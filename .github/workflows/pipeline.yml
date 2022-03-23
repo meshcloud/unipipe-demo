@@ -23,7 +23,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
       - uses: actions/checkout@v3
       ### Doing actual VNet Stuff
-      - name: transform
+      - name: Prepare terraform files
         run: |
           unipipe --version
           unipipe list
@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --global user.email "azure-platform-operators@example.com"
           git config --global user.name "VNet Bot by example.com"
-      - name: create-vnets
+      - name: Create VNETs
         continue-on-error: true
         run: |
           git checkout master
@@ -43,13 +43,13 @@ jobs:
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating VNets"
           git push
-      - name: create-repos
+      - name: Create Repositories
         continue-on-error: true
         run: |
           git checkout master
           cd github-service
-          chmod +x github-service/create.sh
-          github-service/create.sh
+          chmod +x create.sh
+          ./create.sh
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating GitHub Services"
           git push
