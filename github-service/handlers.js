@@ -61,10 +61,10 @@ resource "github_repository" "example" {
 
   visibility = "private"
 
-  template {
-    owner      = "meshcloud"
-    repository = "unipipe-demo-infrastructure-template"
-  }
+  # template {
+  #   owner      = "meshcloud"
+  #   repository = "unipipe-demo-infrastructure-template"
+  # }
 }
 `
 }
