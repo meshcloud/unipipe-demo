@@ -18,7 +18,7 @@ for filepath in **/*.main.tf; do
     terraform -chdir="$(dirname "$filepath")" init
 
     if [ "$first_line" = "#DELETED" ]; then
-        terraform -chdir="$(dirname "$filepath")" destroy -auto-approve
+        terraform -chdir="$(dirname "$filepath")" plan -destroy
         unipipe update --instance-id "$instance_id" --status "succeeded" --description "Service is Destroyed." ../
         echo "$filepath is destroyed."
     else
