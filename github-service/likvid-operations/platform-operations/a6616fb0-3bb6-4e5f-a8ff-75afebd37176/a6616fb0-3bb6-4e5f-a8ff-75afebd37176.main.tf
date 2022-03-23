@@ -17,7 +17,7 @@ provider "github" {
 }
 
 resource "github_repository" "example" {
-  name        = "my-second-repository"
+  name        = "my-third-repository"
   description = "Infrastructure repository for project platform-operations of customer likvid-operations."
 
   visibility = "private"
