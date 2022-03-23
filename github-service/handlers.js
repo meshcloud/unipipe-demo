@@ -54,8 +54,6 @@ provider "github" {
   owner = "meshcloud"
 }
 
-
-
 resource "github_repository" "example" {
   name        = "${repositoryName}"
   description = "Infrastructure repository for project ${projectId} of customer ${customerId}."
