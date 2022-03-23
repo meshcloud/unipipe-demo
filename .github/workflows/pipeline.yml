@@ -19,11 +19,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      ### Installing UniPipe-CLI
-      - unipipe-cli
-        uses: meshcloud/setup-unipipe@v1
-      - name: checkout # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        uses: actions/checkout@master
+      - uses: meshcloud/setup-unipipe@v1
+      - uses: hashicorp/setup-terraform@v1
+      - uses: actions/checkout@v3
       ### Doing actual VNet Stuff
       - name: transform
         run: |
@@ -35,8 +33,6 @@ jobs:
         run: |
           git config --global user.email "azure-platform-operators@example.com"
           git config --global user.name "VNet Bot by example.com"
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
       - name: create-vnets
         continue-on-error: true
         run: |
