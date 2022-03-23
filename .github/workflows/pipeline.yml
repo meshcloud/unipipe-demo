@@ -2,7 +2,6 @@ name: Update Instances
 concurrency: osb-instances # signal that we're modifying instances (status/gemerated tf=)
 
 env:
-  unipipe-version: v0.6.3
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
@@ -21,31 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       ### Installing UniPipe-CLI
-      - name: mkdir-bin-folder
-        run: mkdir -p ~/.local/bin
-      - name: unipipe-cli-cache
-        id: unipipe-cli-cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.local/bin
-          key: ${{ runner.os }}-unipipe-cli-${{env.unipipe-version}}
-      - name: add-bin-folder-to-path
-        run: echo "~/.local/bin" >> $GITHUB_PATH
-      - name: download-unipipe-cli
-        if: steps.unipipe-cli-cache.outputs.cache-hit != 'true'
-        run: |
-          cd ~/.local/bin
-          wget --no-verbose https://github.com/meshcloud/unipipe-cli/releases/download/${{env.unipipe-version}}/unipipe-x86_64-unknown-linux-gnu
-          mv unipipe-x86_64-unknown-linux-gnu unipipe
-          chmod +x unipipe
+      - unipipe-cli
+        uses: meshcloud/setup-unipipe@v1
       - name: checkout # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@master
       ### Doing actual VNet Stuff
-      - name: transform-vnets
+      - name: transform
         run: |
           unipipe --version
-          unipipe list ./
-          unipipe transform --registry-of-handlers=network/network-handlers.js ./
+          unipipe list
+          unipipe transform --registry-of-handlers=network/handlers.js
+          unipipe transform --registry-of-handlers=github-service/handlers.js
       - name: Configure git for VNet Bot
         run: |
           git config --global user.email "azure-platform-operators@example.com"
@@ -53,10 +38,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       - name: create-vnets
+        continue-on-error: true
         run: |
           git checkout master
-          chmod +x network/create-vnets.sh
-          network/create-vnets.sh
+          chmod +x network/create.sh
+          network/create.sh
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating VNets"
+          git push
+      - name: create-repos
+        continue-on-error: true
+        run: |
+          git checkout master
+          chmod +x github-service/create.sh
+          github-service/create.sh
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Updating GitHub Services"
           git push
