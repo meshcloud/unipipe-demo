@@ -41,6 +41,7 @@ jobs:
           cd github-service
           chmod +x create.sh
           ./create.sh
+          cd ..
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating GitHub Services"
           git push
@@ -51,6 +52,7 @@ jobs:
           cd network
           chmod +x create.sh
           ./create.sh
+          cd ..
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating VNets"
           git push
