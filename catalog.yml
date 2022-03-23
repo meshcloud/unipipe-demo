@@ -75,7 +75,6 @@ services:
       documentationUrl: ""
       supportUrl: "support@meshcloud.io"
       tenantAware: true
-      sensitive: true
     plans:
       - id: B17F389D-7ECD-4522-98AF-5E2289B68A97
         name: "GitHub Repo"
