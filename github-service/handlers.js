@@ -51,6 +51,7 @@ terraform {
 
 provider "github" {
   # Token is provided by GitHub action runner environment variable GITHUB_TOKEN
+  owner = "meshcloud"
 }
 
 
@@ -61,10 +62,10 @@ resource "github_repository" "example" {
 
   visibility = "private"
 
-  # template {
-  #   owner      = "meshcloud"
-  #   repository = "unipipe-demo-infrastructure-template"
-  # }
+  template {
+    owner      = "meshcloud"
+    repository = "unipipe-demo-infrastructure-template"
+  }
 }
 `
 }

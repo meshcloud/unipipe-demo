@@ -34,16 +34,6 @@ jobs:
         run: |
           git config --global user.email "azure-platform-operators@example.com"
           git config --global user.name "VNet Bot by example.com"
-      - name: Create VNETs
-        continue-on-error: true
-        run: |
-          git checkout master
-          cd network
-          chmod +x create.sh
-          ./create.sh
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Updating VNets"
-          git push
       - name: Create Repositories
         continue-on-error: true
         run: |
@@ -53,4 +43,14 @@ jobs:
           ./create.sh
           git add .
           git diff-index --quiet HEAD || git commit -m "Updating GitHub Services"
+          git push
+      - name: Create VNETs
+        continue-on-error: true
+        run: |
+          git checkout master
+          cd network
+          chmod +x create.sh
+          ./create.sh
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Updating VNets"
           git push
