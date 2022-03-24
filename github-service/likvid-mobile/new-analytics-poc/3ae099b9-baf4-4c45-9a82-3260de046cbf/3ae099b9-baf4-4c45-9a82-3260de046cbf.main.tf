@@ -46,7 +46,7 @@ module "github_actions_sa" {
   names        = ["githubactionssa"]
   display_name = "Github Actions SA"
 
-  project_roles = ["likvid-mobile-new-analyt-u41=>roles/editor"]
+  project_roles = ["likvid-mobile-new-analyt-u41=>roles/owner"]
 }
 
 module "gh_oidc" {
