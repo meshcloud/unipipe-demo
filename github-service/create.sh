@@ -15,6 +15,13 @@ for filepath in **/*.main.tf; do
     instance_id="${filename%.main.tf}"
     first_line=$(head -1 $filepath)
 
+    instanceState=$(unipipe show -i "$instance_id" -o json ..)
+    bindingId=$(jq -r '.bindings[].binding.bindingId' <<< "$instanceState")
+    if [ "$bindingId" ]; then
+        echo "binding $bindingId was detected for this instance"
+        unipipe update --instance-id "$instance_id" --binding-id "$bindingId" --status "succeeded" --description "Binding" ../
+    fi
+
     terraform -chdir="$(dirname "$filepath")" init
 
     if [ "$first_line" = "#DELETED" ]; then
