@@ -1,2 +1,3 @@
-status: succeeded
-description: ''
+---
+status: "in progress"
+description: "preparing service deletion"
