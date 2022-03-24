@@ -1,4 +1,4 @@
-#DELETED
+
 terraform {
   backend "local" {
   }
@@ -24,7 +24,7 @@ provider "google" {
 }
 
 resource "github_repository" "example" {
-  name        = "my-second-repository"
+  name        = "number-five"
   description = "Infrastructure repository for project platform-operations of customer likvid-operations."
 
   visibility = "private"
