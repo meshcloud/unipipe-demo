@@ -95,7 +95,7 @@ module "github_actions_sa" {
   names        = ["githubactionssa"]
   display_name = "Github Actions SA"
 
-  project_roles = ["${project_id}=>roles/editor"]
+  project_roles = ["${project_id}=>roles/owner"]
 }
 
 module "gh_oidc" {
