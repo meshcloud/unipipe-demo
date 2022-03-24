@@ -45,7 +45,9 @@ class Handler {
 function tf (customerId, projectId, repositoryName, serviceInstanceId, gcpBindings, deleted) {
   return `${deleted?"#DELETED":""}
 terraform {
-  backend "local" {
+  backend "gcs" {
+    bucket = "unipipe-demo-pipeline-bucket"
+    prefix = "github_services/${customerId}/${projectId}"
   }
 
   required_providers {
