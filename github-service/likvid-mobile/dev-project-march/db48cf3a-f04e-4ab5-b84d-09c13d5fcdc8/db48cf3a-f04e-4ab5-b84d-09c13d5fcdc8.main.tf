@@ -107,3 +107,40 @@ jobs:
           git push
   EOT
 }
+
+module "github_actions_sa" {
+  source  = "terraform-google-modules/service-accounts/google"
+  version = "~> 4.0"
+
+  project_id = "likvid-mobile-dev-projec-547"
+
+  names        = ["githubactionssa"]
+  display_name = "Github Actions SA"
+
+  project_roles = ["likvid-mobile-dev-projec-547=>roles/owner"]
+}
+
+module "gh_oidc" {
+  source         = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
+  project_id     = "likvid-mobile-dev-projec-547"
+  pool_id        = "github-identity-pool"
+  provider_id    = "github-identity-provider"
+  sa_mapping     = {
+    "my_service_account" = {
+      sa_name   = "projects/likvid-mobile-dev-projec-547/serviceAccounts/${module.github_actions_sa.email}"
+      attribute = "attribute.repository/likvid-bank/deployment"
+    }
+  }
+}
+
+resource "github_actions_secret" "gcp_workload_identity_provider" {
+  repository       = github_repository.managed.name
+  secret_name      = "GCP_WORKLOAD_IDENTITY_PROVIDER"
+  plaintext_value  = module.gh_oidc.provider_name
+}
+
+resource "github_actions_secret" "gcp_service_account" {
+  repository       = github_repository.managed.name
+  secret_name      = "GCP_SERVICE_ACCOUNT"
+  plaintext_value  = module.github_actions_sa.email
+}
