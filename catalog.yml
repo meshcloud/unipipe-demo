@@ -65,7 +65,7 @@ services:
                           - "WestEurope"
   - id: E1A838DE-AA9C-4DED-A23C-24824BC1B192
     name: "GitHub Repository for Infrastructure Deployments"
-    description: "Creates a GitHub Repository for IaC deployments."
+    description: "Creates a GitHub Repository in organization likvid-bank for IaC deployments."
     bindable: true
     metadata:
       displayName: "GitHub Repository"
@@ -96,7 +96,7 @@ services:
                 properties:
                   repository:
                     title: GitHub Repository Name Postfix
-                    description: Your repository name will be composed of your customer identifier, project identifier and this name postfix.
+                    description: The repository name will be \"customerIdentifier-projectIdentifier-postfix\"
                     type: string
                     pattern: "^[a-z]*[-a-z]+"
  
