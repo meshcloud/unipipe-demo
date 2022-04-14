@@ -95,7 +95,8 @@ services:
                 "$schema": http://json-schema.org/draft-04/schema#
                 properties:
                   repository:
-                    title: GitHub Repository Name
+                    title: GitHub Repository Name Postfix
+                    description: Your repository name will be composed of your customer identifier, project identifier and this name postfix.
                     type: string
                     pattern: "^[a-z]*[-a-z]+"
  

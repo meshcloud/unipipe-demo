@@ -47,7 +47,7 @@ function tf (customerId, projectId, repositoryName, serviceInstanceId, gcpBindin
 terraform {
   backend "gcs" {
     bucket = "unipipe-demo-pipeline-bucket"
-    prefix = "github_services/likvid-mobile/infrastructure-test"
+    prefix = "github_services/${customerId}/${projectId}"
   }
 
   required_providers {
@@ -71,8 +71,8 @@ provider "google" {
 }
 
 resource "github_repository" "managed" {
-  name        = "infrastructure-test"
-  description = "Infrastructure repository for project infrastructure-test of customer likvid-mobile."
+  name        = "${customerId}-${projectId}-${repositoryName}"
+  description = "Infrastructure repository for project ${projectId} of customer ${customerId}."
 
   gitignore_template = "Terraform"
   auto_init          = true
@@ -139,8 +139,8 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
-          workload_identity_provider: $${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: $${{ secrets.GCP_SERVICE_ACCOUNT }}
+          workload_identity_provider: \$\${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: \$\${{ secrets.GCP_SERVICE_ACCOUNT }}
       - run: terraform init
       - run: terraform apply -auto-approve
       - name: git
@@ -183,13 +183,13 @@ module "gh_oidc" {
 }
 
 resource "github_actions_secret" "gcp_workload_identity_provider" {
-  repository       = github_repository.managed_repo.name
+  repository       = github_repository.managed.name
   secret_name      = "GCP_WORKLOAD_IDENTITY_PROVIDER"
   plaintext_value  = module.gh_oidc.provider_name
 }
 
 resource "github_actions_secret" "gcp_service_account" {
-  repository       = github_repository.managed_repo.name
+  repository       = github_repository.managed.name
   secret_name      = "GCP_SERVICE_ACCOUNT"
   plaintext_value  = module.github_actions_sa.email
 }`
