@@ -96,7 +96,7 @@ services:
                 properties:
                   repository:
                     title: GitHub Repository Name Postfix
-                    description: The repository name will be \"customerIdentifier-projectIdentifier-postfix\"
+                    description: The repository name will be the concatination of the customer identifier, project identifier and this postfix, separated by dashes.
                     type: string
                     pattern: "^[a-z]*[-a-z]+"
  
