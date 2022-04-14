@@ -1,12 +1,14 @@
 name: Update Instances
-concurrency: osb-instances # signal that we're modifying instances (status/gemerated tf=)
+concurrency: osb-instances
 
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-  GITHUB_TOKEN: ${{ secrets.GH_USER_TOKEN }}
+  GITHUB_APP_ID : ${{ secrets.GH_GITHUB_APP_ID}}
+  GITHUB_APP_INSTALLATION_ID : ${{ secrets.GH_GITHUB_APP_INSTALLATION_ID}}
+  GITHUB_APP_PEM_FILE: ${{ secrets.GH_GITHUB_APP_PEM_FILE }}
   GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
 on:
