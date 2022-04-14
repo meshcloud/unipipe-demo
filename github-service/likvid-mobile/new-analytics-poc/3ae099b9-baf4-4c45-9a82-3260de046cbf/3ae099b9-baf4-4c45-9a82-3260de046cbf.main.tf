@@ -18,8 +18,8 @@ terraform {
 }
 
 provider "github" {
-  # Token is provided by GitHub action runner environment variable GITHUB_TOKEN
-  owner = "meshcloud"
+  app_auth {}
+  owner = "likvid-bank"
 }
 
 provider "google" {
@@ -30,11 +30,6 @@ resource "github_repository" "example" {
   description = "Infrastructure repository for project new-analytics-poc of customer likvid-mobile."
 
   visibility = "private"
-
-  template {
-    owner      = "meshcloud"
-    repository = "unipipe-demo-infrastructure-template"
-  }
 }
 
 module "github_actions_sa" {
@@ -57,7 +52,7 @@ module "gh_oidc" {
   sa_mapping     = {
     "my_service_account" = {
       sa_name   = "projects/likvid-mobile-new-analyt-u41/serviceAccounts/${module.github_actions_sa.email}"
-      attribute = "attribute.repository/meshcloud/number-seven"
+      attribute = "attribute.repository/likvid-bank/number-seven"
     }
   }
 }

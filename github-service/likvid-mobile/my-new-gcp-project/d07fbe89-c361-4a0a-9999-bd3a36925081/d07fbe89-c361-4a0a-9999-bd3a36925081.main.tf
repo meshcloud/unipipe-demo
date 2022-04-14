@@ -18,8 +18,8 @@ terraform {
 }
 
 provider "github" {
-  # Token is provided by GitHub action runner environment variable GITHUB_TOKEN
-  owner = "meshcloud"
+  app_auth {}
+  owner = "likvid-bank"
 }
 
 provider "google" {
@@ -30,9 +30,4 @@ resource "github_repository" "example" {
   description = "Infrastructure repository for project my-new-gcp-project of customer likvid-mobile."
 
   visibility = "private"
-
-  template {
-    owner      = "meshcloud"
-    repository = "unipipe-demo-infrastructure-template"
-  }
 }
