@@ -2,7 +2,7 @@
 terraform {
   backend "gcs" {
     bucket = "unipipe-demo-pipeline-bucket"
-    prefix = "github_services/likvid-mobile/infrastructure-test"
+    prefix = "github_services/likvid-mobile/my-new-gcp-project"
   }
 
   required_providers {
@@ -26,8 +26,8 @@ provider "google" {
 }
 
 resource "github_repository" "managed" {
-  name        = "infrastructure-test"
-  description = "Infrastructure repository for project infrastructure-test of customer likvid-mobile."
+  name        = "likvid-mobile-my-new-gcp-project-my-tstrepo"
+  description = "Infrastructure repository for project my-new-gcp-project of customer likvid-mobile."
 
   gitignore_template = "Terraform"
   auto_init          = true

@@ -26,7 +26,7 @@ provider "google" {
 }
 
 resource "github_repository" "managed" {
-  name        = "infrastructure-test"
+  name        = "likvid-mobile-infrastructure-test-infrastructure-test"
   description = "Infrastructure repository for project infrastructure-test of customer likvid-mobile."
 
   gitignore_template = "Terraform"
