@@ -1,0 +1,21 @@
+---
+bindingId: "b4f7f1d8-f315-491f-aab6-12f0c19ba312"
+serviceInstanceId: "db48cf3a-f04e-4ab5-b84d-09c13d5fcdc8"
+serviceDefinitionId: "E1A838DE-AA9C-4DED-A23C-24824BC1B192"
+planId: "B17F389D-7ECD-4522-98AF-5E2289B68A97"
+originatingIdentity: !<PlatformContext>
+  platform: "meshmarketplace"
+  user_id: "75606cd5-2251-4134-9e46-1604f001312b"
+  user_euid: "fzieger@meshcloud.io"
+parameters: {}
+bindResource:
+  tenant_id: "likvid-mobile-dev-projec-547"
+  platform: "gcp.gcp-meshstack-dev"
+context: !<PlatformContext>
+  platform: "meshmarketplace"
+  permission_url: null
+  project_id: "dev-project-march"
+  auth_url: null
+  customer_id: "likvid-mobile"
+  token_url: null
+deleted: false
