@@ -99,4 +99,76 @@ services:
                     description: The repository name will be the concatination of the customer identifier, project identifier and this postfix, separated by dashes.
                     type: string
                     pattern: "^[a-z]*[-a-z]+"
- 
+  - id: 12B30C93-10B9-44DD-B334-0C6CC83E2C4A
+    name: "OpenDevStack Project"
+    description: "Creates ."
+    bindable: true
+    metadata:
+      displayName: "OpenDevStack Project"
+      imageUrl: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAASM0lEQVR4nOydS3Mb15XHz+3Gkw897IpleyRZJcq2xsw2VfHKzCr+ABG3WXg3sxr5Awj+AJJXmVVUWY84H8BZmdmM8gHMlDljUlIoKS+PCRMP4tHdN3XQvOBFEzhAAw2gCf5/VSyyCXT3uY//Pefce4HO/OzXvyMAQH+ceRsAQJqBQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABDIzNuAUSjkCx+9f3vtq3wud2PetvSjXC7Ts4MXm34QbI16Tjabvc5lWioU16dr3XjUajX6bn+/1A68L+Kcd/u9W0/euHL13vQsGx/P87hMW9Xj2uao55wLgazf/dcdNW8jBsDi2N/fp4B9sRrdyjSLo9Vq0d7eHnm+R+SMXqYP1u58fWlldWOqxo0Ji2N3d5carWasMqVaIMZzpFkcL168iHUOe44Pbq99VUypOA4Py/Ts2X54MGLFnwcPz+3k+/7IZTKkViBc6efBc8Tl/RSLgz3HwcGfY5938/r136RVHJVKdax2MqRSIIvqOdIcVnHO0QmrPC/WeZxzpDmsev361UTXSJ1AFtlzpFUc3ZwjpjjOQ87RbDYnuk6qBMLiuHXj5m/TLI5Fyzm+//57ev36dSxxmHZaWV7+eKrGjQm3E5dpUnFQmgSyyJ4jreJgzxFXHHROZhWTIhUCQc4xeybJOdLaTmHO8TrRa85dIIvsOdIqDuQcozNXgbA43n377VKaxbFonuPwsNyZyo2bc3A7pVUc1WqVXr16lbg4aJ4CgeeYPew5uouAI7Ko7TQqcxHIwuYca3e+Sas4TM4RlzR7ePaCcdspLnMRyMqVmzt/+aFNRO153F4kCDwq/zX+iFRY+smjv5cD7opTsWtSjr6PF1YxS8tvlo4aOTr6azrLVD38S7h9ZIrMRSBtT8/jtiMR+OPZ5vs61eXSOr5tXBVpLlMQTN82fB4EAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBAABCAQAAQgEAAEIBACBuTxA5+a1Jcpn06nNdtujb4+y1G6P/vSrTCZDazffpHwuN1XbxqXZatPuD/GeLlUoFOju+zfIcdLZTp4f0O5Rm+KVKj4zF8j1d959mFpxeF7ngZBxxFEsFmltbY1yKRVHtVan/ZiPfGZxcJnSLI79/T1qNhpTv9dMBfLOtbcfXHvr2v1Z3nNUWBy73+5SqzX6o4TZc9y6dSu14qhUKvTs2XPyvHiC//DDD1MrjmqtRi9e/JmajeOZ3G9mArn93q0nb1y5em9W94tDx3Ps7ccSx3nwHHHFwZ7j9u3bqRbH3nd75PvjBVaafxRtxTlnJgL5YO3O12l9CP24noM7UlrFwTlHGFbFE8fdu3dTKw4Oq9hzTCQOhzZIqT/EOW/qAmHPkWZxLKLnGEcc5yPnGC+sOhHHZlxx0LQFsrK88klawyomrudg4DlmS2e2and3UnHE9hyGqQkEOcdsYc/xv7vfxjqHxXFn7U5qxfHjUYWeP3s2aVg1lucwTEUgyDlmi/EccTgPnmPvu/8b+/xJPYchcYEg55gti5xzjEsSnsOQqEDeufb2gzSHVYvqOZBznJKU5zAkJpDr7/7Lw2s/eSu1i4DPnz+P7Tlu3bpF+Xx+qraNy9HRET1//iK2OO7cSXfO8frVy7nMVg0iEYEsas6RVnGw5xhHHGn3HGnIOaJMLJBLl9962PByG41yjOlSPeldR+fwHy9jT+W+8dZ7VK75RLU6qU6HUsNPmlGZtA7oby+/iyUO5vKb79IPR+HeJcdxSanhZdJ6dk31/387GPvcaXgOw8QC8Xznxo/VeI01SxrNVuxzjj2Xjr3g5ChI3KZJ0IEfWxxMvZ2hejudZWLq9XTkHFHS6W8BGIFpeg7DBRDIDOO5GaD1YpXHMFa5FJVIqVibD+NyAQQCzgfpFD4EAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQCgAAEAoAABAKAAAQSIZ2PcZmMxSyTJq1oe9r3gUAsus+8WyA00YF2aH3ediRJRxyOmuqzCQ2JPCd9UZjm01LnwYngPyWl/jRvW5LiRBwzayd4kBMCRVsLJw5F9xZQHDPxHIYLLxAdiqNEXPELQjdUdNR/z9uWpLA8x1SfahvlQodY1nO2Z1rp0+Qk51jEsGqmnsNwsQWCnCP1zDrniHJhQ6yFzDkcWl9AcczFcxgupAcJiLYXKeegMCEvLZI4qCP4+XkOw4USCHKO80EaPIfhwghEI+c4F8w754hyYXIQrehRWio9Cbor5IsnjlR4DsOF8CAnOcfn87YjSbSix4skDkpJzhFlYoF4XuNpMqZMB5+Cp+SqL+Oc025WUpujaB1Q4HRm4GLZmOYyUWdWUT8lSpc4GPWzX/9u3jYAkFouTA4CwDhAIAAIQCAACEAgAAhAIAAIQCDg3ND29CeHZV+Xy4Hm33w87XtObaGw1dL3+He7Hf42uK566jj00nHoIJNRf5zW/WdFEOjrnkcfD3tfJkNPHUe9nI1VwxnUPtms2nJd2nHd9C1Cem3aUKQ6f/NvPs5maKprJ4kLxPf1R0eVYMcUJIrdIK6rt1dXnV8kbcMsOT7Wj9ptujfsfZo0FQqqVCw4X8zGssFUKsHXvk8b/V7j9tGa6OpV1dOALKggoI/4tWJRzb0MsyLREIvFUa3qrwaJ4+z7aaNeDx4maUNa4TppNqhUqwVP5mkH1/cgcRhUn+ar1/WTRkOXmk1dmqJ5qSNRgfBIqjXdMMeaiJaW1OaVK47in+UVteE4tGOf43n0yyRtmDfZLG2xpzA/OvKtVFxHxw39YF72NVv6vn2cz1PJtE++QCVun6jNF5nEQiyOxY8bQakbIyo6WF1Rn9qxbDaj/uCu0KfVavBVEKj18Dxab7X0r3I5+QsG7Fh/1BjZxNnMODkPe0TfD79TatQcgmP4XO50n1Sh4H7BXsMOwxqNoJTPOY8HXc++L2Nfb1Js785CKBbdbrjE4V8+px97nhqaUw3DrnsasQzTLPe4JCYQjsXtyl+JiMPAneLSJfenh2Vfm/fXapo7VeeAK5bduXk/j2yHh4GOun1NAa2sOBssuug92p7+pFrR22dDBU2Oo3f4/tH316q68y197AFyOfWbai3YjoaKfM+rV9zR4keL5WVn8/g4eNBsUic84etyfS0v936q8bgRPOAwJnrfep3tpp1Ll5yu3bbo3Axtr66czeXsXIPLxXZE38Od0m4nbp9cjrb63cdQLgddF2NfV8ptuAyD7GSOjoJveLAcVu5B2PVLJ56xWJw830ssxOIR3vzNI9OwET6XPR0duCPb59tUKsH/9IuJuRNVq8F29DwWGHf2fueEdqr1sDFOz/M8vWH9/fNqTZ8Rh7lnoxH8h1SuQeTz6rEdukTt5tyAc5RB+Rt3Hra7a4uig1ObaSN6PT62O2v2pL5tG8Ly6BKLZJwy2XC9D8ttfI82ovXHdvYTx+nrHGEEvxKv6+uPWi39mTlmUXF9xy/FWRITiO2WsxkV+ztTB02V+n74fxPbRxu42TytGKZWP02CXZe2V1fVeie+zp+OLlzp0fMMWqsbqvObOrNO0ZzJ2BOXaDgVLa+dG3AZu3lBxG4TutjhoupzveixCVfsgYlOcqJKRe9UB0wesLC4Huz/2TlW9LWTztnNa7j+7TaL1h97Ulscds7K7XdSd//oZ5uhUgl2uN3M/dnjJDWlnphA7BE7M4JAXJdG+hwJVy1XMrvxQkF9cfmSc8OucM/T3SSfQxQzAvP1V1edXxhPdnYEH/x9tVzJly+rG3y/sLJPRRKNreNQLDhWZzqtMB4Bjd1s46VVp2sbhwmZLHU7b3TdYtD/7eOsdX6xqO5HRU/hGsM9Dnvrx72ziiwsrgf7f3xsfkz9co7GnZvry54G5tdtEUXrr2XZyYOBnXdw+62sqI8zfcJoQzgrqHpsG/TecZjbSvqoCs9laSsaI9sdzfZcHC6YvzMZ+n30fvZ5UkePjkDsvU5fjZ2CDMXuJLnOQl1veOq61D024VDYkXTfa5y5Zk79p/k7zAGdn/IoH52tYpG2mnS/UuVcIl7YFeYu/ZPq3rWf0/rjvMEOKfvlDNLECofGJj/ikuQLvQJLgsQEEndicNBIGBfbc9mVzQkbJ5P2jy2gWB09IU30ivK0xtrW/7nBo3ZzbmJe9y3Pl7dGZjWg47EnzWbPjsA8yl+94qpCgc54FM4VBoWgw+Acg0f1w0O/pwz93qsGJYojYuc8jtIH01iETc6D6NM6OD4OYi8mzX5Kb/Zz/XbntsvrC+FeFNfqzNwh7FK02+HeJE7azf+injRKoeB8GXoU6mkzO3QdBfY4h4c8CFFnZ8GknX8UTI5CJ7ljpRJ8nfQ9Epvm5Ri0m4Ap1ZmdkMIoz9M/N0Oz4+gzMfGk5HL0SHLPjqMOkr6nBI+sdpexZ6G405uciEf8fH7wZ+gzGdWTu2Vc/dT3wzCz1dL/5rq0F5m9EgVi4PCm3Q7uGTt8X8V6pki9HvzWFkUuT48y7mn921P3ScG5bhDoNbM47fm0wf0qyT1+CQpE/d4IRHVCHP3ZoD07nEybWQcmO4H3sONobUVDStFRGhaaDK0W9YQsdiPmcs5Wo6E7HdJxaGAs3w+73ltt2sxmqbvgynWTyTgjdxa+r7Ejrof1fPWxqXs3Q9tLRafnW2Tq9bPX0wk48VyOHp+uL3W86C+TFEhiIVZ0loiN5ljUnp/v7NWqBU/smNp19VMpdgy3ZgQPzHXq9eChnUvY05aFAllJOH02KNEMN971X3eZFB7B+Prmh+uAY/AgkjvYIrAnAVrCVpR+dof1HqIi09y9s2Yhh2Vfs012PsT1VD/urdd8Xj2yz7P7crUW/Jc5z9hje0dH0d/N3+E6h/9Nv/LwAGr3maOj4JswsgjhejgsB5rbv9/5dOL58la7N5pUarW0uG4Sh8Q8CIdThYJTalqVzJ07TMYHDxU8Ag67NgsqvO7Z62QtgbDQGg2/s9jGbrdS0TscvpnO2Pb0RmfLtArn2+0V46Roteh+qzW4vJwQFyNTka6r/sQdRRnv29ClwNfrrqs6oWdntsbTna3eUbu53rMZvW3yjuhWkugMA79u2qXfqG6ILrTZYaDXps1yOeisnocr6WrTsV5vt2mz0dCdmTd7+1E/eIAzM1F8frWqn1LPWtdwuN3brTA8DAcJveW6tJ7Elv1Ep3m54TPZ0Todx+Cs/GHbAexY3Ub3GYmZ5SVn0252rjQeGTsrxl4ojnnAnZU708qK+rTf68tLarM34aZ7xm7u/FInKxbVv/e7Xz/PPCyq6eyhW1VnOtewZJ9DHfvY2N4ZrFj8Svdtx0HrMnY5ooub/bDXP1TofRLZdZz4OsjKsrPZb9euQZ/EqNxRRpmWy2Toj25Gb0evUchTKToS00kcvSLeP9wT5LrR2aCw66g+Ewb2647be132YIM6HcfYnZXlApWuXnHV8rKzOWjiYrjdYb31y0+4MyvrvM5nT/KqbwcJhdjf4nDzovq838i7tOR8bs8aGYwHLxScL7mc0byCy8NlN3mBG6k/sy6TyZwdWM2iaXcxMkvb+uQG/JuPzXu5XrifmPv7Pk28fYam/cVx0d2ZNMKu2OhmRbMZjmPTIAhnK8bZzWtIU+I+iHHqLS7RT0KOutt5WDtErxunvtO4mzd136w4SCDztQpcVPClDQAIQCAACKTu8Qcca9vrAtkRZjAAmBapEwgnotFP2gEwLxBiASAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAgAIEAIACBACAAgQAg8M8AAAD//x/9fmDvI8HpAAAAAElFTkSuQmCC      longDescription: "OpenDevStack allows to set up required infrastructure and continuous delivery processes for new projects in less than 5 min. OpenDevStack creates the required Confluence spaces, Jira projects, Bitbucket projects and repositories and the required OpenShift resources. And all is tightly integrated. Simply provision a new project, commit and then run your code. "
+      providerDisplayName: "GitHub Asset Owner"
+      documentationUrl: "https://www.opendevstack.org/ods-documentation/opendevstack/4.x/getting-started/index.html"
+      supportUrl: "https://www.opendevstack.org/ods-documentation/opendevstack/4.x/getting-started/index.html"
+      tenantAware: false
+    plans:
+      - id: 14B87CA4-5E80-452B-B4BB-3B9AC5D2B732
+        name: "Backend Python Flask Quickstarter"
+        description: "The project supports generation of Python Flask project boilerplate and quick installation and integration of it with OpenShift CD pipelines."
+        free: false
+        metadata:
+          costs:
+            - amount:
+                eur: 5
+              unit: MONTHLY
+          bullets:
+            - SonarQube Configuration
+            - Example hello world app with tests
+        schemas:
+          service_instance:
+            create:
+              parameters:
+                "$schema": http://json-schema.org/draft-04/schema#
+                properties:
+                  desription:
+                    title: OpenDevStack Project Description
+                    description: The description will be visible in OpenDevStack's provisioning panel.
+                    type: string
+            update:
+              parameters:
+                "$schema": http://json-schema.org/draft-04/schema#
+                properties:
+                  desription:
+                    title: OpenDevStack Project Description
+                    description: The description will be visible in OpenDevStack's provisioning panel.
+                    type: string
+      - id: 26B8517F-39CB-4D9E-B20F-FA7188520F52
+        name: "Backend Go Quickstarter"
+        description: "Use this quickstarter when you want to use Go. Go is well suited for CLI tools, network/operational related things and microservices."
+        free: false
+        metadata:
+          costs:
+            - amount:
+                eur: 5
+              unit: MONTHLY
+          bullets:
+            - SonarQube Configuration
+            - Example Go file
+        schemas:
+          service_instance:
+            create:
+              parameters:
+                "$schema": http://json-schema.org/draft-04/schema#
+                properties:
+                  desription:
+                    title: OpenDevStack Project Description
+                    description: The description will be visible in OpenDevStack's provisioning panel.
+                    type: string
+            update:
+              parameters:
+                "$schema": http://json-schema.org/draft-04/schema#
+                properties:
+                  desription:
+                    title: OpenDevStack Project Description
+                    description: The description will be visible in OpenDevStack's provisioning panel.
+                    type: string
+                    
