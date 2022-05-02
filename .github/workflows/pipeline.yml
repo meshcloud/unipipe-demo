@@ -26,17 +26,28 @@ jobs:
       - uses: meshcloud/setup-unipipe@v1
       - uses: hashicorp/setup-terraform@v1
       - uses: actions/checkout@v3
-      ### Doing actual VNet Stuff
-      - name: Prepare terraform files
+      - name: Transform instances
         run: |
           unipipe --version
           unipipe list
           unipipe transform --registry-of-handlers=network/handlers.js
           unipipe transform --registry-of-handlers=github-service/handlers.js
+          unipipe transform --registry-of-handlers=opendevstack/handlers.js
       - name: Configure git for VNet Bot
         run: |
           git config --global user.email "azure-platform-operators@example.com"
           git config --global user.name "VNet Bot by example.com"
+      - name: Create OpenDevStack
+        continue-on-error: true
+        run: |
+          git checkout master
+          cd opendevstack
+          chmod +x create.sh
+          ./create.sh
+          cd ..
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Updating OpenDevStack"
+          git push
       - name: Create Repositories
         continue-on-error: true
         run: |
