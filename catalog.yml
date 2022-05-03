@@ -134,6 +134,24 @@ services:
                     title: OpenDevStack Project Description
                     description: The description will be visible in OpenDevStack's provisioning panel.
                     type: string
+                  atlassianSpaces:
+                    title: Create JIRA / Confluence spaces
+                    type: boolean
+                    default: true
+                  openshift:
+                    title: Create OpenShift Project
+                    type: boolean
+                    default: true
+                  specificCdUser:
+                    title: Project specific CD user
+                    type: boolean
+                    default: false
+                  cdUser:
+                    title: CD user
+                    description: If you use a project specific CD user, the user has to exist in your identity management and has to be able to access Bitbucket. After project creation you will have to change the CD user password in the OpenShift webconsole of the created CD project.
+                    type: string
+                    visibleIf:
+                      specificCdUser: true
             update:
               parameters:
                 "$schema": http://json-schema.org/draft-04/schema#
@@ -164,6 +182,24 @@ services:
                     title: OpenDevStack Project Description
                     description: The description will be visible in OpenDevStack's provisioning panel.
                     type: string
+                  atlassianSpaces:
+                    title: Create JIRA / Confluence spaces
+                    type: boolean
+                    default: true
+                  openshift:
+                    title: Create OpenShift Project
+                    type: boolean
+                    default: true
+                  specificCdUser:
+                    title: Project specific CD user
+                    type: boolean
+                    default: false
+                  cdUser:
+                    title: CD user
+                    description: If you use a project specific CD user, the user has to exist in your identity management and has to be able to access Bitbucket. After project creation you will have to change the CD user password in the OpenShift webconsole of the created CD project.
+                    type: string
+                    visibleIf:
+                      specificCdUser: true
             update:
               parameters:
                 "$schema": http://json-schema.org/draft-04/schema#
