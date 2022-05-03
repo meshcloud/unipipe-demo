@@ -30,31 +30,42 @@ class VnetHandler {
 
 function opendevstack(service) {
   return `${service.instance.deleted?"#DELETED\n---":"---"}
-apiVersion: v1
+${meshProject(service, "cd")}
+${meshProject(service, "dev")}
+${meshProject(service, "test")}`
+}
+
+function meshProject(service, opendevstack_env) {
+  return `apiVersion: v1
 kind: meshProject
 metadata:
-  name: ${service.instance.context.project_id}-cd
+  name: ${service.instance.context.project_id}-${opendevstack_env}
   ownedByCustomer: ${service.instance.context.customer_id}
 spec:
-  displayName: ${service.instance.context.project_id}-cd
+  displayName: ${service.instance.context.project_id}-${opendevstack_env}
+  tags:
+    environment:
+      - Development
+---
+apiVersion: v2
+kind: meshTenant
+metadata:
+  ownedByProject: ${service.instance.context.project_id}-${opendevstack_env}
+  ownedByCustomer: ${service.instance.context.customer_id}
+  platformIdentifier: okd4.openshift
+spec:
+  landingZoneIdentifier: likvid-default-quota
 ---
 apiVersion: v1
-kind: meshProject
-metadata:
-  name: ${service.instance.context.project_id}-dev
+kind: meshProjectUserBinding
+roleRef:
+  name: Project Admin
+targetRef:
+  name: ${service.instance.context.project_id}-${opendevstack_env}
   ownedByCustomer: ${service.instance.context.customer_id}
-spec:
-  displayName: ${service.instance.context.project_id}-dev
----
-apiVersion: v1
-kind: meshProject
-metadata:
-  name: ${service.instance.context.project_id}-test
-  ownedByCustomer: ${service.instance.context.customer_id}
-spec:
-  displayName: ${service.instance.context.project_id}-test
----
-`
+subjects:
+  - name: ${service.instance.originatingIdentity.user_euid}
+---`
 }
 
 const handlers = {

@@ -19,7 +19,16 @@ for filepath in **/*.instance.yml; do
         unipipe update --instance-id "$instance_id" --status "succeeded" --description "destroyed" ../
         echo "$filepath is destroyed."
     else
+        curl 'https://federation.demo.meshcloud.io/api/meshobjects' \
+            -X PUT \
+            -i \
+            -u "${MESH_API_BASIC_AUTH}" \
+            -H 'Content-Type: application/vnd.meshcloud.api.meshobjects.v1+yaml;charset=UTF-8' \
+            -H 'Accept: application/vnd.meshcloud.api.meshobjects.v1+json' \
+            --data-binary "@$filepath"
+
         unipipe update --instance-id "$instance_id" --status "succeeded" --description "applied" ../
+
         echo "$filepath is applied."
     fi
     echo "----------------------------------------------------------------"
