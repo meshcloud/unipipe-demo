@@ -29,10 +29,31 @@ class VnetHandler {
 }
 
 function opendevstack(service) {
-  return `${service.instance.deleted?"#DELETED":"---"}
-customerId: ${service.instance.context.customer_id}
-projectId: ${service.instance.context.project_id}
-projectDescription: ${service.instance.parameters.desription}
+  return `${service.instance.deleted?"#DELETED\n---":"---"}
+apiVersion: v1
+kind: meshProject
+metadata:
+  name: ${service.instance.context.project_id}-cd
+  ownedByCustomer: ${service.instance.context.customer_id}
+spec:
+  displayName: ${service.instance.context.project_id}-cd
+---
+apiVersion: v1
+kind: meshProject
+metadata:
+  name: ${service.instance.context.project_id}-dev
+  ownedByCustomer: ${service.instance.context.customer_id}
+spec:
+  displayName: ${service.instance.context.project_id}-dev
+---
+apiVersion: v1
+kind: meshProject
+metadata:
+  name: ${service.instance.context.project_id}-test
+  ownedByCustomer: ${service.instance.context.customer_id}
+spec:
+  displayName: ${service.instance.context.project_id}-test
+---
 `
 }
 
