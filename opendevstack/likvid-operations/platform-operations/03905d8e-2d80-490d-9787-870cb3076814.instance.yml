@@ -1,4 +1,91 @@
 ---
-customerId: likvid-operations
-projectId: platform-operations
-projectDescription: This is my first ods project.
+apiVersion: v1
+kind: meshProject
+metadata:
+  name: platform-operations-cd
+  ownedByCustomer: likvid-operations
+spec:
+  displayName: platform-operations-cd
+  tags:
+    environment:
+      - Development
+---
+apiVersion: v2
+kind: meshTenant
+metadata:
+  ownedByProject: platform-operations-cd
+  ownedByCustomer: likvid-operations
+  platformIdentifier: okd4.openshift
+spec:
+  landingZoneIdentifier: likvid-default-quota
+---
+apiVersion: v1
+kind: meshProjectUserBinding
+roleRef:
+  name: Project Admin
+targetRef:
+  name: platform-operations-cd
+  ownedByCustomer: likvid-operations
+subjects:
+  - name: fzieger@meshcloud.io
+---
+apiVersion: v1
+kind: meshProject
+metadata:
+  name: platform-operations-dev
+  ownedByCustomer: likvid-operations
+spec:
+  displayName: platform-operations-dev
+  tags:
+    environment:
+      - Development
+---
+apiVersion: v2
+kind: meshTenant
+metadata:
+  ownedByProject: platform-operations-dev
+  ownedByCustomer: likvid-operations
+  platformIdentifier: okd4.openshift
+spec:
+  landingZoneIdentifier: likvid-default-quota
+---
+apiVersion: v1
+kind: meshProjectUserBinding
+roleRef:
+  name: Project Admin
+targetRef:
+  name: platform-operations-dev
+  ownedByCustomer: likvid-operations
+subjects:
+  - name: fzieger@meshcloud.io
+---
+apiVersion: v1
+kind: meshProject
+metadata:
+  name: platform-operations-test
+  ownedByCustomer: likvid-operations
+spec:
+  displayName: platform-operations-test
+  tags:
+    environment:
+      - Development
+---
+apiVersion: v2
+kind: meshTenant
+metadata:
+  ownedByProject: platform-operations-test
+  ownedByCustomer: likvid-operations
+  platformIdentifier: okd4.openshift
+spec:
+  landingZoneIdentifier: likvid-default-quota
+---
+apiVersion: v1
+kind: meshProjectUserBinding
+roleRef:
+  name: Project Admin
+targetRef:
+  name: platform-operations-test
+  ownedByCustomer: likvid-operations
+subjects:
+  - name: fzieger@meshcloud.io
+---
