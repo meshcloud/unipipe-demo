@@ -10,6 +10,7 @@ env:
   GITHUB_APP_INSTALLATION_ID : ${{ secrets.GH_GITHUB_APP_INSTALLATION_ID}}
   GITHUB_APP_PEM_FILE: ${{ secrets.GH_GITHUB_APP_PEM_FILE }}
   GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+  MESH_API_BASIC_AUTH: ${{ secrets.MESH_API_BASIC_AUTH }}
 
 on:
   # run on any push to master
